@@ -22,6 +22,6 @@ app.use("/", router);
 app.use("/a", postrouter);
 app.use("/b", categoryrouter);
 
-app.listen(5001, () => {
-  console.log("Listening on port no 5001");
+app.listen(5000, () => {
+  console.log("Listening on port no 5000");
 });

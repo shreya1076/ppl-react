@@ -42,6 +42,7 @@ export class UploadPostForm extends Component {
     formdata.append("files", this.state.files[0]);
     formdata.append("userId", userId);
     formdata.append("userName", userName);
+    console.log("+++formdata", formdata);
     if (this.state.description.length === 0) {
       this.setState({ hasDescription: true });
     } else if (this.state.category.length === 0) {

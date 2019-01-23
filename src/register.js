@@ -75,7 +75,7 @@ class Register extends Component {
           };
           console.log("<<<<<<<options", options);
 
-          fetch("http://localhost:5001/register", options)
+          fetch("http://localhost:5000/register", options)
             .then(response => response.json())
             .then(json => {
               console.log("<<<<<data from the backened we getting", json);

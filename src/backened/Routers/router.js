@@ -12,51 +12,51 @@ let transporter = nodemailer.createTransport({
 
 router.post("/register", async (req, res) => {
   console.log("router on backend", req.body);
-  res.send({ result: "dfdfdfdf" });
-  // try {
-  //   var data = {};
-  //   data.username = req.body.Username;
-  //   data.password = req.body.Password;
-  //   data.email = req.body.Email;
-  //   data.firstName = req.body.FirstName;
-  //   data.lastName = req.body.LastName;
-  //   let whetherEmailExist = await userapi.finduser({ email: data.email });
-  //   console.log("<<<<<<<<whetherEmailExist", whetherEmailExist);
-  //   if (whetherEmailExist.length === 0) {
-  //     let resultfromapi = await userapi.createnewuser(data);
-  //     console.log("resultfromapi", resultfromapi);
-  //     nodemailer.createTestAccount((err, accont) => {
-  //       let link = "localhost:3000/verify/" + resultfromapi._id;
+  // res.send({ result: "dfdfdfdf" });
+  try {
+    var data = {};
+    data.username = req.body.Username;
+    data.password = req.body.Password;
+    data.email = req.body.Email;
+    data.firstName = req.body.FirstName;
+    data.lastName = req.body.LastName;
+    let whetherEmailExist = await userapi.finduser({ email: data.email });
+    console.log("<<<<<<<<whetherEmailExist", whetherEmailExist);
+    if (whetherEmailExist.length === 0) {
+      let resultfromapi = await userapi.createnewuser(data);
+      console.log("resultfromapi", resultfromapi);
+      nodemailer.createTestAccount((err, accont) => {
+        let link = "localhost:3000/verify/" + resultfromapi._id;
 
-  //       let mailOptions = {
-  //         from: "shreya.sehgal@daffodilsw.com",
-  //         to: data.email,
-  //         subject: "Verification email from ppl",
-  //         text: "Hello world",
-  //         html:
-  //           "Hello,<br> Please Click on the link to verify your email.<br><a href=http://" +
-  //           link +
-  //           ">Click here to verify</a>"
-  //       };
+        let mailOptions = {
+          from: "shreya.sehgal@daffodilsw.com",
+          to: data.email,
+          subject: "Verification email from ppl",
+          text: "Hello world",
+          html:
+            "Hello,<br> Please Click on the link to verify your email.<br><a href=http://" +
+            link +
+            ">Click here to verify</a>"
+        };
 
-  //       transporter.sendMail(mailOptions, (error, info) => {
-  //         //sendMail(data,callback)
-  //         if (error) {
-  //           return console.log(error);
-  //         } else {
-  //           return console.log("<<<<<<<info", info);
-  //         }
-  //       });
-  //     });
+        transporter.sendMail(mailOptions, (error, info) => {
+          //sendMail(data,callback)
+          if (error) {
+            return console.log(error);
+          } else {
+            return console.log("<<<<<<<info", info);
+          }
+        });
+      });
 
-  //     res.send({ result1: resultfromapi });
-  //   } else {
-  //     res.send({ result: "This email id already exists" });
-  //   }
-  // } catch (err) {
-  //   console.log(" the error is err", err);
-  //   res.send(err);
-  // }
+      res.send({ result1: resultfromapi });
+    } else {
+      res.send({ result: "This email id already exists" });
+    }
+  } catch (err) {
+    console.log(" the error is err", err);
+    res.send(err);
+  }
 });
 
 router.post("/login", async (req, res) => {

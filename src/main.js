@@ -17,14 +17,14 @@ class Main extends Component {
       <Switch>
         // routing is done this way as shown
         {/* <Route path="/" component={Check} /> */}
-        <Route path="/" component={Register} />
-        <Route path="/login1/" component={Login} />
+        <Route path="/login1" component={Login} />
         <Route path="/timeline" component={Timeline} />
         <Route path="/singlepost/:id" component={SinglePost} />
         <Route path="/home" component={Timeline} />
         <Route path="/forgotpassword" component={ForgotPassword} />
         <Route path="/resetpassword/:id" component={ResetPassword} />
         <Route path="/verify/:id" component={Verify} />
+        <Route path="/" component={Register} />
       </Switch>
       // </main>
     );
